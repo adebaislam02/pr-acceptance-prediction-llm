@@ -17,7 +17,7 @@ submitted to *e-Informatica Software Engineering Journal*.
 │                                          # 16 prompting scripts (4 models × 4 conditions)
 │
 ├── eval_all_models.py                     # Main evaluator: reads predictions/, writes results/
-├── build_latex_tables.py                  # Renders paper tables from results/ into latex/
+├── build_latex_tables.py                  # (Optional) Renders paper LaTeX tables from results/
 ├── compute_mcnemar_table.py               # Pairwise McNemar's test on acceptance classification
 ├── compute_perflag_kappa.py               # Per-flag Cohen's Kappa (annotation reliability)
 ├── fetch_pr_dates.py                      # Pulls created/closed/merged dates from GitHub API
@@ -25,8 +25,7 @@ submitted to *e-Informatica Software Engineering Journal*.
 ├── contamination_analysis.py              # Data-contamination check (Section 5.5 of paper)
 │
 ├── predictions/                           # 16 raw prediction CSVs (one per model × condition)
-├── results/                               # 17 result CSVs used to render paper tables
-└── latex/                                 # 11 LaTeX table snippets (input into the manuscript)
+└── results/                               # 17 result CSVs used to render paper tables
 ```
 
 ## Requirements
@@ -62,14 +61,14 @@ from the original runs, you can reproduce every table in the paper
 **without** calling any LLM API (i.e., without spending money):
 
 ```bash
-# Recompute all main-text and appendix tables in results/ and latex/
+# Recompute all main-text and appendix tables in results/
 python3 eval_all_models.py            # Sections 5.1, 5.2, 5.3, 5.4 numbers
 python3 compute_mcnemar_table.py      # Section 5.1 McNemar (Table 6)
 python3 compute_perflag_kappa.py      # Section 4 Kappa (Table 4)
 python3 contamination_analysis.py     # Section 5.5 contamination check
 python3 summarize_pr_dates_vs_cutoffs.py    # supporting counts
 
-# Render all LaTeX table snippets
+# (Optional) Render paper-ready LaTeX table snippets into latex/
 python3 build_latex_tables.py
 ```
 
