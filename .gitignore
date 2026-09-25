@@ -1,0 +1,11 @@
+.env
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.idea/
+fetch_pr_dates_checkpoint.json
+fetch_pr_dates_failures.txt
