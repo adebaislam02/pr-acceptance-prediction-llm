@@ -60,7 +60,13 @@ def load_predictions(fname):
     df = df[df["index"].notna()].copy()
     df["index"] = df["index"].astype(int)
     df = df.drop_duplicates(subset=["index"])
-    df["pred_yes"] = df["accepted"].astype(str).str.strip().str.lower().eq("yes")
+    # Mirror the exclusion policy in eval_all_models.py: drop rows whose
+    # `accepted` field failed to parse into a clean yes/no (a few DeepSeek
+    # one-shot rows have NaN here). Without this, N in this analysis
+    # disagrees with N in Table 5.1 for the same (model, condition) cells.
+    df["accepted_clean"] = df["accepted"].astype(str).str.strip().str.lower()
+    df = df[df["accepted_clean"].isin(["yes", "no"])].copy()
+    df["pred_yes"] = df["accepted_clean"].eq("yes")
     return df[["index", "pred_yes"]]
 
 
