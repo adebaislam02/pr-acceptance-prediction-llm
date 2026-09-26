@@ -155,6 +155,33 @@ def main():
             frac_unm_before = bu_n / b_n if b_n else float("nan")
             frac_unm_after  = au_n / a_n if a_n else float("nan")
 
+            # ---- Class-mix decomposition ------------------------------
+            # What accuracy would we PREDICT for the after-bucket if the
+            # per-class rates stayed the same as in the before-bucket, and
+            # only the class-mix changed? This isolates the class-mix
+            # contribution to the observed drop from the per-class
+            # contribution. See Section 5.5 discussion.
+            if pd.notna(acc_bm) and pd.notna(acc_bu) and pd.notna(frac_unm_after):
+                predicted_acc_classmix = (
+                    (1 - frac_unm_after) * acc_bm + frac_unm_after * acc_bu
+                )
+            else:
+                predicted_acc_classmix = float("nan")
+
+            acc_before_overall = b_ok / b_n if b_n else float("nan")
+            acc_after_overall  = a_ok / a_n if a_n else float("nan")
+            observed_drop      = acc_before_overall - acc_after_overall
+            classmix_drop      = acc_before_overall - predicted_acc_classmix
+
+            # Only meaningful when there IS a drop (delta < 0).  For cells
+            # where after-bucket accuracy is >= before-bucket, "% of drop
+            # explained" is not a well-defined quantity (report NaN).
+            if (pd.notna(observed_drop) and observed_drop > 1e-6
+                    and pd.notna(classmix_drop)):
+                pct_drop_explained_classmix = 100.0 * classmix_drop / observed_drop
+            else:
+                pct_drop_explained_classmix = float("nan")
+
             rows.append({
                 "Model": model, "Cond": cond,
                 "N_before": b_n, "N_after": a_n,
@@ -178,6 +205,9 @@ def main():
                 "p_unmerged":          p_unmerged,
                 "Frac_unmerged_before": frac_unm_before,
                 "Frac_unmerged_after":  frac_unm_after,
+                # ---- class-mix decomposition ----
+                "Predicted_Acc_classmix":       predicted_acc_classmix,
+                "Pct_drop_explained_classmix":  pct_drop_explained_classmix,
             })
 
     df_out = pd.DataFrame(rows)
@@ -194,6 +224,7 @@ def main():
         "Frac_unmerged_before", "Frac_unmerged_after",
         "N_before_merged", "N_after_merged",
         "N_before_unmerged", "N_after_unmerged",
+        "Predicted_Acc_classmix", "Pct_drop_explained_classmix",
     ]
     perclass_csv = "results/contamination_perclass_results.csv"
     df_out[perclass_cols].to_csv(perclass_csv, index=False)
@@ -229,8 +260,27 @@ def main():
                 if pd.notna(r['Frac_unmerged_before']) and pd.notna(r['Frac_unmerged_after']) else "n/a"
             print(f"  {model:<32s} {cond:<8s} | {merged_str:<15s} | {unmerged_str:<15s} | {pct_str}")
 
+    # -------------------- class-mix decomposition table --------------------
+    print("\n" + "=" * 90)
+    print("CLASS-MIX DECOMPOSITION — reproduces the arithmetic in Section 5.5 prose")
+    print("=" * 90)
+    print(f"  {'Model':<32s} {'Cond':<8s} | {'Acc_b':>7s} {'Acc_a':>7s} {'Pred':>7s} | {'% expl':>8s}")
+    print("  " + "-" * 78)
+    for model in MODELS:
+        for cond in CONDITIONS:
+            r = df_out[(df_out["Model"] == model) & (df_out["Cond"] == cond)].iloc[0]
+            acc_b_str  = f"{r['Acc_before']:.3f}"     if pd.notna(r['Acc_before'])            else "  n/a"
+            acc_a_str  = f"{r['Acc_after']:.3f}"      if pd.notna(r['Acc_after'])             else "  n/a"
+            pred_str   = f"{r['Predicted_Acc_classmix']:.3f}" if pd.notna(r['Predicted_Acc_classmix']) else "  n/a"
+            pct_str    = f"{r['Pct_drop_explained_classmix']:5.1f}%" if pd.notna(r['Pct_drop_explained_classmix']) else "   n/a"
+            print(f"  {model:<32s} {cond:<8s} | {acc_b_str:>7s} {acc_a_str:>7s} {pred_str:>7s} | {pct_str:>8s}")
+    print("\n  Pred = predicted after-accuracy if per-class rates stayed the")
+    print("         same as before-bucket and only the class-mix changed")
+    print("  % expl = fraction of the observed drop attributable to class-mix")
+    print("           alone (n/a when the after-accuracy is >= before-accuracy)")
+
     print(f"\nSaved:")
-    print(f"  {out_csv}       (overall + per-class, all columns)")
+    print(f"  {out_csv}       (overall + per-class + class-mix decomposition)")
     print(f"  {perclass_csv}  (per-class only, matches Table tab:contam-perclass)")
 
 
