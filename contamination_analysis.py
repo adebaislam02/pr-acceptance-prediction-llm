@@ -130,6 +130,31 @@ def main():
             title = f"{cond}   (overall)"
             print_table(title, b_ok, b_wrong, a_ok, a_wrong, p_overall)
 
+            # ---- Per-class breakdown (merged vs unmerged separately) ----
+            # This is the source of the numbers in Table tab:contam-perclass.
+            # It intentionally reuses the same `m` frame, so the exclusion
+            # policy applied in load_predictions() flows through here as well.
+            b_merged   = b[b["gt_yes"] == True]
+            b_unmerged = b[b["gt_yes"] == False]
+            a_merged   = a[a["gt_yes"] == True]
+            a_unmerged = a[a["gt_yes"] == False]
+
+            bm_ok, bm_n = int(b_merged["correct"].sum()),   len(b_merged)
+            bu_ok, bu_n = int(b_unmerged["correct"].sum()), len(b_unmerged)
+            am_ok, am_n = int(a_merged["correct"].sum()),   len(a_merged)
+            au_ok, au_n = int(a_unmerged["correct"].sum()), len(a_unmerged)
+
+            acc_bm = bm_ok / bm_n if bm_n else float("nan")
+            acc_bu = bu_ok / bu_n if bu_n else float("nan")
+            acc_am = am_ok / am_n if am_n else float("nan")
+            acc_au = au_ok / au_n if au_n else float("nan")
+
+            p_merged   = fisher_p(am_ok, am_n, bm_ok, bm_n)
+            p_unmerged = fisher_p(au_ok, au_n, bu_ok, bu_n)
+
+            frac_unm_before = bu_n / b_n if b_n else float("nan")
+            frac_unm_after  = au_n / a_n if a_n else float("nan")
+
             rows.append({
                 "Model": model, "Cond": cond,
                 "N_before": b_n, "N_after": a_n,
@@ -138,11 +163,40 @@ def main():
                 "Acc_before": b_ok / b_n if b_n else float("nan"),
                 "Acc_after":  a_ok / a_n if a_n else float("nan"),
                 "p_overall":  p_overall,
+                # ---- per-class columns ----
+                "N_before_merged":   bm_n,
+                "N_after_merged":    am_n,
+                "N_before_unmerged": bu_n,
+                "N_after_unmerged":  au_n,
+                "Acc_before_merged":   acc_bm,
+                "Acc_after_merged":    acc_am,
+                "Delta_merged":        acc_am - acc_bm,
+                "p_merged":            p_merged,
+                "Acc_before_unmerged": acc_bu,
+                "Acc_after_unmerged":  acc_au,
+                "Delta_unmerged":      acc_au - acc_bu,
+                "p_unmerged":          p_unmerged,
+                "Frac_unmerged_before": frac_unm_before,
+                "Frac_unmerged_after":  frac_unm_after,
             })
 
     df_out = pd.DataFrame(rows)
     out_csv = "results/contamination_full_results.csv"
     df_out.to_csv(out_csv, index=False)
+
+    # Also save a slimmer per-class CSV so the reviewer can directly
+    # cross-check Table tab:contam-perclass numbers without wading
+    # through the full result CSV.
+    perclass_cols = [
+        "Model", "Cond",
+        "Acc_before_merged", "Acc_after_merged", "Delta_merged", "p_merged",
+        "Acc_before_unmerged", "Acc_after_unmerged", "Delta_unmerged", "p_unmerged",
+        "Frac_unmerged_before", "Frac_unmerged_after",
+        "N_before_merged", "N_after_merged",
+        "N_before_unmerged", "N_after_unmerged",
+    ]
+    perclass_csv = "results/contamination_perclass_results.csv"
+    df_out[perclass_cols].to_csv(perclass_csv, index=False)
 
     # -------------------- summary --------------------
     print("\n" + "=" * 90)
@@ -159,7 +213,25 @@ def main():
                 note = f"  [N_after={r['N_after']} — sample too small]"
             print(f"    {cond:<20s}   Δ={r['Acc_after']-r['Acc_before']:+.3f}   p={fmt(r['p_overall'])}   {sig}{note}")
 
-    print(f"\nSaved: {out_csv}")
+    # -------------------- per-class table for the paper's tab:contam-perclass --------------------
+    print("\n" + "=" * 90)
+    print("PER-CLASS BREAKDOWN — matches Table tab:contam-perclass")
+    print("=" * 90)
+    header = f"  {'Model':<32s} {'Cond':<8s} | {'Merged (b/a)':<15s} | {'Unmerged (b/a)':<15s} | % unmerged (b/a)"
+    print(header)
+    print("  " + "-" * (len(header) - 2))
+    for model in MODELS:
+        for cond in CONDITIONS:
+            r = df_out[(df_out["Model"] == model) & (df_out["Cond"] == cond)].iloc[0]
+            merged_str   = f"{fmt(r['Acc_before_merged'])} / {fmt(r['Acc_after_merged'])}"
+            unmerged_str = f"{fmt(r['Acc_before_unmerged'])} / {fmt(r['Acc_after_unmerged'])}"
+            pct_str      = f"{r['Frac_unmerged_before']*100:5.1f}% / {r['Frac_unmerged_after']*100:5.1f}%" \
+                if pd.notna(r['Frac_unmerged_before']) and pd.notna(r['Frac_unmerged_after']) else "n/a"
+            print(f"  {model:<32s} {cond:<8s} | {merged_str:<15s} | {unmerged_str:<15s} | {pct_str}")
+
+    print(f"\nSaved:")
+    print(f"  {out_csv}       (overall + per-class, all columns)")
+    print(f"  {perclass_csv}  (per-class only, matches Table tab:contam-perclass)")
 
 
 if __name__ == "__main__":
