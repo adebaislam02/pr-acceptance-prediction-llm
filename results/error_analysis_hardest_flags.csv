@@ -1,0 +1,16 @@
+flag,polarity,category,F1,GT_positives,metric,FN_rate,FN,FP_rate,FP,Total_predictions
+poor_code_quality,red,evaluative,0.025,64.0,lowest_F1,,,,,
+good_code_quality,green,evaluative,0.085,208.0,lowest_F1,,,,,
+fails_tests,red,evaluative,0.109,64.0,lowest_F1,,,,,
+unclear_or_missing_pr_title,red,evaluative,0.13,636.0,lowest_F1,,,,,
+unclear_or_missing_pr_description,red,evaluative,0.214,1828.0,lowest_F1,,,,,
+overengineered_solution,red,evaluative,,96.0,most_missed,1.0,96.0,,,
+poor_code_quality,red,evaluative,,64.0,most_missed,0.969,62.0,,,
+unclear_or_missing_pr_title,red,evaluative,,636.0,most_missed,0.914,581.0,,,
+fails_tests,red,evaluative,,64.0,most_missed,0.891,57.0,,,
+unclear_or_missing_pr_description,red,evaluative,,1828.0,most_missed,0.865,1582.0,,,
+overengineered_solution,red,evaluative,,,most_overpredicted,,,1.0,19.0,19.0
+poor_code_quality,red,evaluative,,,most_overpredicted,,,0.98,96.0,98.0
+good_code_quality,green,evaluative,,,most_overpredicted,,,0.954,2154.0,2259.0
+fails_tests,red,evaluative,,,most_overpredicted,,,0.891,57.0,64.0
+pr_not_aligned_with_issue,red,evaluative,,,most_overpredicted,,,0.796,340.0,427.0
