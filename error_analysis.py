@@ -1,28 +1,40 @@
 # -*- coding: utf-8 -*-
 """
-Quantitative per-flag error analysis.
+Quantitative per-flag error analysis (strict scoring, matches Appendix D).
 
 For each of the 24 flags, aggregates false positives and false negatives
-across all 16 (model, condition) cells, using the same normalization
-pipeline as eval_all_models.py.  Produces:
+across all 16 (model, condition) cells, using the same row-filter and
+scoring rule as eval_all_models.py's compute_metrics(): rows with
+unparseable `accepted` values are excluded, and predictions are matched
+against the vocabulary strictly (no normalization).  The per-flag F1
+numbers produced here therefore reproduce Appendix D exactly.
 
-  * results/error_analysis_per_flag.csv     — one row per flag with:
-       GT_positives          how often each flag appears in ground truth
-       Total_predictions     how often it appears in any model prediction
-       FN_total              total false negatives across all cells
-       FP_total              total false positives across all cells
-       FN_rate               FN_total / (GT_positives * n_cells)   — miss rate
-       FP_rate               FP_total / (Total_predictions)         — over-application rate
-       Consistency_missed    fraction of cells where FN_rate > 50%
-       Consistency_overpredicted  fraction of cells where FP outnumbers TP
+Produces:
 
-  * results/error_analysis_hardest_flags.csv — top-5 hardest by each metric.
+  * results/error_analysis_per_flag.csv         — one row per flag with:
+      GT_positive_cell_instances   how often a (PR, cell) pair is a
+                                    ground-truth positive across all 16
+                                    cells (= unique-PR count × 16)
+      GT_positive_unique_PRs       count of distinct PRs in the 300-PR
+                                    dataset carrying this flag
+      Total_predictions            how often the flag appears in any
+                                    model prediction across all cells
+      TP, FP, FN                   total counts across cells
+      FN_rate                      FN / GT_positive_cell_instances
+      FP_rate                      FP / Total_predictions
+      Precision, Recall, F1        strict-scoring aggregate metrics
+      cells_where_missed           raw count (0-16) of cells where
+                                    per-cell FN rate exceeded 50%
+      cells_where_overpredicted    raw count (0-16) of cells where FP > TP
 
-  * results/error_analysis_model_consistency.csv — per (model, flag) FN and FP
-    counts, so cross-model patterns are directly checkable.
+  * results/error_analysis_hardest_flags.csv    — top-5 hardest by each metric
+  * results/error_analysis_by_model.csv         — per (model, flag) FN/FP
+                                                   counts for cross-model checks
 
-The purpose is to power Section 5.6's error analysis with reproducible
-numbers rather than hand-picked anecdotes.
+Strict scoring is the default because the paper's headline claims about
+per-flag F1 (Section 5.3, Appendix D) are all strict-mode.  Swap
+strict_pred_set for normalize_pred_list in main() to compute the
+normalized companion pass matching Section 5.4's diagnostic table.
 """
 import os
 import ast
@@ -53,6 +65,8 @@ def to_list_safe(cell):
 
 
 def load_predictions(path):
+    """Mirror eval_all_models.py's row selection so per-flag totals match
+    Appendix D exactly, including its accepted-field exclusion policy."""
     try:
         df = pd.read_csv(os.path.join(BASE, path))
     except Exception:
@@ -63,6 +77,11 @@ def load_predictions(path):
     df = df[df["index"].notna()].copy()
     df["index"] = df["index"].astype(int)
     df = df.drop_duplicates(subset=["index"])
+    # Same exclusion policy as eval_all_models.py: drop rows whose
+    # `accepted` value did not parse into a clean yes/no.  Affects a
+    # small number of DeepSeek one-shot rows (1S-M: 2, 1S-U: 1).
+    df["accepted_clean"] = df["accepted"].astype(str).str.strip().str.lower()
+    df = df[df["accepted_clean"].isin(["yes", "no"])].copy()
     return df
 
 
@@ -78,8 +97,19 @@ def parse_gt(cell, is_red):
     return out
 
 
+def strict_pred_set(items):
+    """Strict scoring: exact-match membership in the enumerated vocabulary,
+    with no case/separator/typo normalization.  This is what
+    eval_all_models.py's compute_metrics() uses (line 337) and therefore
+    what powers Section 5.3, Appendix D, and the per-flag F1 numbers
+    reported in the paper's main results."""
+    return {x.strip() for x in items if x.strip() in VOCAB_SET}
+
+
 def normalize_pred_list(items):
-    """Apply case, separator, and typo normalization."""
+    """Normalized scoring companion: case, separator, and typo normalization
+    against the vocabulary.  Reported in the paper's Section 5.4 as a
+    diagnostic alongside strict scoring, NOT as a substitute."""
     out = set()
     for x in items:
         x_str = str(x).strip()
@@ -98,7 +128,7 @@ def main():
     gt = gt[gt["pr_diff"].notna() & (gt["pr_diff"].str.strip() != "")].reset_index(drop=True)
     gt["gt_index"] = gt.index
 
-    # Prefer Final (adjudicated) annotation column; fall back to Annotator 1.
+    # Prefer Final annotation column; fall back to Annotator 1.
     def _pick(row, base):
         for col in (f"{base} (Final)", f"{base} (Annotator 1)"):
             v = row.get(col, None)
@@ -133,7 +163,10 @@ def main():
 
             for _, row in merged.iterrows():
                 gt_set = row["gt_all_flags"]
-                pred_set = normalize_pred_list(row["red_flags_pred"] + row["green_flags_pred"])
+                # STRICT scoring by default, matching Appendix D and
+                # eval_all_models.py's compute_metrics(). Model predictions
+                # must exactly match a vocabulary flag name to count.
+                pred_set = strict_pred_set(row["red_flags_pred"] + row["green_flags_pred"])
 
                 for f in ALL_FLAGS:
                     in_gt   = f in gt_set
@@ -178,11 +211,13 @@ def main():
         precision = d["TP"] / (d["TP"] + d["FP"]) if (d["TP"] + d["FP"]) else float("nan")
         recall    = d["TP"] / (d["TP"] + d["FN"]) if (d["TP"] + d["FN"]) else float("nan")
         f1 = 2*precision*recall/(precision+recall) if pd.notna(precision) and pd.notna(recall) and (precision+recall) > 0 else float("nan")
+        n_cells = d["n_cells"] if d["n_cells"] else 1
         rows.append({
             "flag":            f,
             "polarity":        "red" if f in RED_FLAG_VOCAB else "green",
             "category":        "extractive" if f in EXTRACTIVE_FLAGS else "evaluative",
-            "GT_positives":    d["GT_positives"],
+            "GT_positive_cell_instances": d["GT_positives"],
+            "GT_positive_unique_PRs":     d["GT_positives"] // n_cells,
             "Total_predictions": d["Total_predictions"],
             "TP": d["TP"], "FP": d["FP"], "FN": d["FN"],
             "FN_rate":         round(fn_rate, 3) if pd.notna(fn_rate) else None,
@@ -190,15 +225,15 @@ def main():
             "Precision":       round(precision, 3) if pd.notna(precision) else None,
             "Recall":          round(recall, 3) if pd.notna(recall) else None,
             "F1":              round(f1, 3) if pd.notna(f1) else None,
-            "cells_where_missed":       d["cells_where_missed"],
-            "cells_where_overpredicted": d["cells_where_overpredicted"],
+            "cells_where_missed":         d["cells_where_missed"],
+            "cells_where_overpredicted":  d["cells_where_overpredicted"],
         })
     result = pd.DataFrame(rows)
     result.to_csv("results/error_analysis_per_flag.csv", index=False)
 
     # ---- Hardest-flags summary ----
-    hardest_by_f1  = result.dropna(subset=["F1"]).sort_values("F1").head(5)[["flag","polarity","category","F1","GT_positives"]]
-    most_missed    = result.dropna(subset=["FN_rate"]).sort_values("FN_rate", ascending=False).head(5)[["flag","polarity","category","FN_rate","FN","GT_positives"]]
+    hardest_by_f1  = result.dropna(subset=["F1"]).sort_values("F1").head(5)[["flag","polarity","category","F1","GT_positive_unique_PRs"]]
+    most_missed    = result.dropna(subset=["FN_rate"]).sort_values("FN_rate", ascending=False).head(5)[["flag","polarity","category","FN_rate","FN","GT_positive_cell_instances","GT_positive_unique_PRs"]]
     most_overpred  = result.dropna(subset=["FP_rate"]).sort_values("FP_rate", ascending=False).head(5)[["flag","polarity","category","FP_rate","FP","Total_predictions"]]
 
     summary = pd.concat([
