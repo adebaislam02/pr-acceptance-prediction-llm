@@ -1,12 +1,12 @@
 flag,polarity,category,F1,GT_positive_unique_PRs,metric,FN_rate,FN,GT_positive_cell_instances,FP_rate,FP,Total_predictions
 poor_code_quality,red,evaluative,0.029,4.0,lowest_F1,,,,,,
 good_code_quality,green,evaluative,0.085,13.0,lowest_F1,,,,,,
-unclear_or_missing_pr_title,red,evaluative,0.088,39.0,lowest_F1,,,,,,
+unclear_or_missing_pr_title,red,evaluative,0.096,35.0,lowest_F1,,,,,,
 fails_tests,red,evaluative,0.106,4.0,lowest_F1,,,,,,
 unclear_or_missing_pr_description,red,evaluative,0.176,114.0,lowest_F1,,,,,,
 overengineered_solution,red,evaluative,,6.0,most_missed,1.0,96.0,96.0,,,
 poor_code_quality,red,evaluative,,4.0,most_missed,0.969,62.0,64.0,,,
-unclear_or_missing_pr_title,red,evaluative,,39.0,most_missed,0.948,603.0,636.0,,,
+unclear_or_missing_pr_title,red,evaluative,,35.0,most_missed,0.942,539.0,572.0,,,
 fails_tests,red,evaluative,,4.0,most_missed,0.906,58.0,64.0,,,
 unclear_or_missing_pr_description,red,evaluative,,114.0,most_missed,0.896,1636.0,1826.0,,,
 overengineered_solution,red,evaluative,,,most_overpredicted,,,,1.0,14.0,14.0

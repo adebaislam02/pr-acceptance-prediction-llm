@@ -46,6 +46,7 @@ from eval_all_models import (
     EXTRACTIVE_FLAGS, EVALUATIVE_FLAGS,
     H2I_RED, H2I_GREEN, VOCAB_SET,
     _KNOWN_VARIANTS, strip_empty_placeholders, normalize_flag,
+    pick_gold,
 )
 
 
@@ -128,16 +129,10 @@ def main():
     gt = gt[gt["pr_diff"].notna() & (gt["pr_diff"].str.strip() != "")].reset_index(drop=True)
     gt["gt_index"] = gt.index
 
-    # Prefer Final annotation column; fall back to Annotator 1.
-    def _pick(row, base):
-        for col in (f"{base} (Final)", f"{base} (Annotator 1)"):
-            v = row.get(col, None)
-            if isinstance(v, str) and v.strip():
-                return v
-        return ""
-
-    gt["gt_red_str"]   = gt.apply(lambda r: _pick(r, "Red Flags"),   axis=1)
-    gt["gt_green_str"] = gt.apply(lambda r: _pick(r, "Green Flags"), axis=1)
+    # Same per-PR gold choice as eval_all_models.py
+    gold = gt.apply(pick_gold, axis=1)
+    gt["gt_red_str"]   = gold.str[0]
+    gt["gt_green_str"] = gold.str[1]
     gt["gt_red_set"]   = gt["gt_red_str"].apply(lambda c: parse_gt(c, is_red=True))
     gt["gt_green_set"] = gt["gt_green_str"].apply(lambda c: parse_gt(c, is_red=False))
     gt["gt_all_flags"] = gt.apply(lambda r: r["gt_red_set"] | r["gt_green_set"], axis=1)

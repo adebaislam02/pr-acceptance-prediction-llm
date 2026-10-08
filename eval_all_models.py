@@ -5,8 +5,9 @@ Generalized evaluation driver for the 4-model LLM PR-review comparison.
 Models: GPT-4o-mini, Claude Haiku 4.5, DeepSeek R1, Mistral Small 3.2-24B
 Conditions: zero-shot, one-shot-merged, one-shot-unmerged, few-shot
 
-Ground truth:  FINAL_DATASET_FIXED.csv with Final → Annotator 2 → Annotator 1
-               fallback chain.
+Ground truth:  FINAL_DATASET_FIXED.csv, chosen per PR by pick_gold():
+               Final for both lists if either Final cell has flags,
+               otherwise Annotator 1 for both.
 
 Special cases:
   * DeepSeek zero-shot — CSV is corrupted (multi-line per record with broken
@@ -170,24 +171,30 @@ def parse_human_flags(cell, mapping):
     items = [s.strip() for s in str(cell).split(",") if s.strip()]
     return [mapping[s] for s in items if s in mapping]
 
-def pick_final_or_annotator(row, final_col, annot2_col, annot1_col, mapping):
-    for c in (final_col, annot2_col, annot1_col):
-        v = row.get(c, "")
-        if isinstance(v, str) and v.strip():
-            return parse_human_flags(v, mapping)
-    return []
+def _has_flags(v):
+    return isinstance(v, str) and bool(v.strip())
+
+def pick_gold(row):
+    """Return (red_str, green_str) for one PR, chosen per row, not per column.
+
+    If either Final cell has flags, use Final for BOTH lists (a blank Final
+    cell then means "no flags of that colour"). Otherwise use Annotator 1
+    for both. Falling back column by column would copy annotator flags into
+    a deliberately blank Final cell.
+    """
+    if _has_flags(row.get("Red Flags (Final)")) or _has_flags(row.get("Green Flags (Final)")):
+        src = "Final"
+    else:
+        src = "Annotator 1"
+    red, green = row.get(f"Red Flags ({src})"), row.get(f"Green Flags ({src})")
+    return (red if _has_flags(red) else ""), (green if _has_flags(green) else "")
 
 def load_ground_truth(gt_path=GT_PATH):
     gt = pd.read_csv(gt_path)
     gt = gt[gt["pr_diff"].notna() & (gt["pr_diff"].str.strip() != "")].reset_index(drop=True)
-    gt["red_flags_true"] = gt.apply(
-        lambda r: pick_final_or_annotator(
-            r, "Red Flags (Final)", "Red Flags (Annotator 2)", "Red Flags (Annotator 1)", H2I_RED
-        ), axis=1)
-    gt["green_flags_true"] = gt.apply(
-        lambda r: pick_final_or_annotator(
-            r, "Green Flags (Final)", "Green Flags (Annotator 2)", "Green Flags (Annotator 1)", H2I_GREEN
-        ), axis=1)
+    gold = gt.apply(pick_gold, axis=1)
+    gt["red_flags_true"] = gold.apply(lambda g: parse_human_flags(g[0], H2I_RED))
+    gt["green_flags_true"] = gold.apply(lambda g: parse_human_flags(g[1], H2I_GREEN))
     gt["accepted_true"] = gt["pr_merged"].map({True: "yes", False: "no"})
     gt["gt_index"] = gt.index
     return gt

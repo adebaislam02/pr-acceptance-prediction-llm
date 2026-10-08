@@ -7,6 +7,7 @@ extending your existing Validation notebook logic. Produces:
 
 Only PRs where BOTH annotators labeled the flag are used.
 """
+import os
 import pandas as pd
 from sklearn.metrics import cohen_kappa_score
 
@@ -172,6 +173,7 @@ tex = (
     r"\end{table*}" + "\n"
 )
 
+os.makedirs("latex", exist_ok=True)
 tex_path = "latex/table_perflag_kappa.tex"
 with open(tex_path, "w") as f:
     f.write(tex)
