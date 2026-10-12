@@ -13,6 +13,8 @@ submitted to *e-Informatica Software Engineering Journal*.
 ├── requirements.txt                       # Python dependencies
 ├── .env.example                           # Template for API keys
 │
+├── data_extraction.ipynb                  # Data collection: PR-issue pairing (GraphQL) and artifact retrieval (REST); run once per repository
+│
 ├── {gpt4o,haiku45,deepseek,mistral}_{zero,one_shot_merged,one_shot_unmerged,few}_shot.py
 │                                          # 16 prompting scripts (4 models × 4 conditions)
 │
@@ -20,12 +22,15 @@ submitted to *e-Informatica Software Engineering Journal*.
 ├── build_latex_tables.py                  # (Optional) Renders paper LaTeX tables from results/
 ├── compute_mcnemar_table.py               # Pairwise McNemar's test on acceptance classification
 ├── compute_perflag_kappa.py               # Per-flag Cohen's Kappa (annotation reliability)
+├── error_analysis.py                      # Per-flag false positive / false negative analysis (Appendix D)
+├── contradiction_analysis.py              # Contradictory opposite-flag pairs in model output vs. gold
+├── compute_flag_correlations.py           # Flag co-occurrence correlations and per-flag baselines
 ├── fetch_pr_dates.py                      # Pulls created/closed/merged dates from GitHub API
 ├── summarize_pr_dates_vs_cutoffs.py       # Reports PR counts vs each model's training cutoff
 ├── contamination_analysis.py              # Data-contamination check (Section 5.5 of paper)
 │
 ├── predictions/                           # 16 raw prediction CSVs (one per model × condition)
-└── results/                               # 17 result CSVs used to render paper tables
+└── results/                               # result CSVs used to render paper tables
 ```
 
 ## Requirements
