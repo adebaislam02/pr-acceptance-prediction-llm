@@ -3730,7 +3730,7 @@ Expect `db/schema.rb` to contain:
 **Rails version**: current `main` (36b2dbfc1d722128c05eb6d6506c7d435ba5b55d)
 
 **Ruby version**: 3.3.2
-","Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Low contributor acceptance rate,10,This PR is a targeted bug fix ensuring Rails' schema dumper correctly includes schema names in enable_extension statements;,"Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Low contributor acceptance rate,10,,Same,Same,,"Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Low contributor acceptance rate,10,This PR is a targeted bug fix ensuring Rails' schema dumper correctly includes schema names in enable_extension statements;
+","Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",,13,This PR is a targeted bug fix ensuring Rails' schema dumper correctly includes schema names in enable_extension statements;,"Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",,13,,Same,Same,,"Clear alignment with issue, Includes test cases, Manageable number of changed lines, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",,13,This PR is a targeted bug fix ensuring Rails' schema dumper correctly includes schema names in enable_extension statements;
 rails/rails,https://github.com/rails/rails/pull/52670,Make Solid Cache the default for new Rails apps,"The defaults for the cache are pulled in from the [template](https://github.com/rails/solid_cache/blob/87fd0e9611237b5608b5e0f4197aec74fe333ca4/lib/generators/solid_cache/install/templates/config/solid_cache.yml.tt) in Solid Cache. Currently 1 week max age and 256MB max size.
 
 Right now this sets up Solid Cache to be used in development and production - maybe we'd want to stick with a memory cache in development?
@@ -4844,7 +4844,7 @@ class ReadOnlyTest < MiniTest::Unit::TestCase
   end
 end
 ```
-","Manageable number of changed lines, Clear PR title, Clear commit message","Low contributor acceptance rate, Unclear or missing PR description",0,The issue was already addressed and documented for Rails 4.0-stable version,,,,,,,,,,,
+","Manageable number of changed lines, Clear PR title, Clear commit message",Unclear or missing PR description,3,The issue was already addressed and documented for Rails 4.0-stable version,,,,,,,,,,,
 rails/rails,https://github.com/rails/rails/pull/52849,Fix `.left_outer_joins` when multiple associations have the same child.,"Fixes #41498
 
 This Pull Request has been created to fix an issue where `.left_outer_joins` used with multiple associations that have the same child association but different parents does not join all parents.
@@ -5695,7 +5695,7 @@ index 4b279b9b4f3fd..12653de3ee411 100644
 
 ```
 bin/rails test test/integration/replica_test.rb 
-```","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback","Large number of changed lines, Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-30,Solution was overengineered and inefficient,"Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback","Large number of changed lines, Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-30,,Same,Same,,"Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback","Large number of changed lines, Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-30,Solution was overengineered and inefficient
+```","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback, Manageable number of changed lines","Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-26,Solution was overengineered and inefficient,"Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback, Manageable number of changed lines","Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-26,,Same,Same,,"Clear alignment with issue, Includes test cases, High contributor acceptance rate, Clear PR description, Clear commit message, Responsive to feedback, Manageable number of changed lines","Unclear or missing PR title, Solution is incorrect or inefficient, Overengineered solution",-26,Solution was overengineered and inefficient
 rails/rails,https://github.com/rails/rails/pull/18797,Added `Relation#unscope` support for uniq/distinct,"While trying to fix #18694  , I found that we don't support this.
 After support for this, that should be a trivial fix.
 ","[""Added `Relation#unscope` support for uniq/distinct""]","[""There's no reason this needs to be supported by unscope. New values override the old one. Just call `distinct(false)`\n"", ""@sgrif should we also close the original issue then?\n"", ""No, the original issue is a valid bug (generating double distinct in `Foo.uniq.count`)\n""]",[],20,"diff --git a/activerecord/CHANGELOG.md b/activerecord/CHANGELOG.md
@@ -26123,7 +26123,7 @@ error Command failed with exit code 1.
 
 ### Additional comments
 
-_No response_","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Positive sentiment in comments, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Large number of changed lines,14,correct fix and tests,,,,,,,,,,,
+_No response_","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Positive sentiment in comments, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",,16,correct fix and tests,,,,,,,,,,,
 eslint/eslint,https://github.com/eslint/eslint/pull/344,rule: no-spaced-func disallow spaces between function identifier and app...,"Fixes https://github.com/nzakas/eslint/issues/334
 ","[""rule: no-spaced-func disallow spaces between function identifier and application"", ""Catch additional cases for a.b, new F, iife"", ""Merge branch 'master' of https://github.com/nzakas/eslint into no-spaced-func\n\nConflicts:\n\tdocs/rules/README.md""]","[""Remember that the target of a function application can be any expression,  including `a.b` or `new A` or another function application.\n"", ""Yeah, I think you need a few more tests with other patterns to make sure this rule acts as you think it should:\n\n``` js\nfoo.bar();\nvar x = new Foo();\n(function() {\n\n}());\n```\n"", ""Ah thanks for catching these cases @michaelficarra @nzakas, putting in code and tests now\n"", ""Can you rebase?\n"", ""Look like Travis wasn't doing so hot with the npm outage. Passed on 0.10, is there another way to kick off a Travis job for the other Node versions?\n"", ""I don't know of a way. I'm just going to merge in.\n"", ""The only thing I would have liked in addition to this is a test that `new Foo` passes. Looking at the code, it appears that it would.\n"", ""Hmm. It looks like `foo( (0))` would fail since _all_ opening parens are checked for preceding spaces, instead of just the parens that are part of the function application.\n"", ""@michaelficarra doh didn't think about that case, good catch - opened https://github.com/nzakas/eslint/issues/353. I'll open a PR with the fix and another with the additional test coverage.\n""]",[],335,"diff --git a/conf/eslint.json b/conf/eslint.json
 index 5c7bbe301a71..3ddede6875d3 100755
@@ -34891,7 +34891,7 @@ I believe these should be the default (not an option proposal)
 
 ### Additional comments
 
-_No response_","Clear alignment with issue, Includes test cases, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback","Low contributor acceptance rate, Large number of changed lines",6,PR adjusts a rule to accept a specific safe coding pattern,,,,,,,,,,,
+_No response_","Clear alignment with issue, Includes test cases, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Large number of changed lines,9,PR adjusts a rule to accept a specific safe coding pattern,,,,,,,,,,,
 eslint/eslint,https://github.com/eslint/eslint/pull/17909,feat: Enable eslint.config.mjs and eslint.config.cjs,"<!--
     Thank you for contributing!
 
@@ -36479,7 +36479,7 @@ Even when removing only the code within the `for ... of` loop, the previously co
     this.bar = 'bar';  // Will trigger no-this-before-super
     // ...
 ```
-","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Positive sentiment in comments, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",,16,Complex PR but fixes the issue,,,,,,,,,,,
+","Clear alignment with issue, Includes test cases, High contributor acceptance rate, Positive sentiment in comments, Clear PR title, Clear PR description, Clear commit message, Responsive to feedback",Large number of changed lines,14,Complex PR but fixes the issue,,,,,,,,,,,
 eslint/eslint,https://github.com/eslint/eslint/pull/19402,chore: better error message for missing plugin in config,"<!--
     Thank you for contributing!
 
