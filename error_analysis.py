@@ -46,7 +46,7 @@ from eval_all_models import (
     EXTRACTIVE_FLAGS, EVALUATIVE_FLAGS,
     H2I_RED, H2I_GREEN, VOCAB_SET,
     _KNOWN_VARIANTS, strip_empty_placeholders, normalize_flag,
-    pick_gold,
+    pick_gold, normalize_accepted,
 )
 
 
@@ -81,7 +81,7 @@ def load_predictions(path):
     # Same exclusion policy as eval_all_models.py: drop rows whose
     # `accepted` value did not parse into a clean yes/no.  Affects a
     # small number of DeepSeek one-shot rows (1S-M: 2, 1S-U: 1).
-    df["accepted_clean"] = df["accepted"].astype(str).str.strip().str.lower()
+    df["accepted_clean"] = df["accepted"].map(normalize_accepted)
     df = df[df["accepted_clean"].isin(["yes", "no"])].copy()
     return df
 

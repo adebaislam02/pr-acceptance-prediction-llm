@@ -210,6 +210,16 @@ def to_list_safe(cell):
     except Exception:
         return []
 
+_ACCEPTED_MAP = {"yes": "yes", "no": "no", "true": "yes", "false": "no"}
+
+def normalize_accepted(v):
+    """Map a model's `accepted` answer to "yes"/"no"; anything else -> NaN.
+
+    One Mistral zero-shot answer is the boolean True instead of "yes"; it
+    means accepted, so it is scored as "yes" rather than counted wrong.
+    """
+    return _ACCEPTED_MAP.get(str(v).strip().lower(), np.nan)
+
 def load_predictions(path):
     """Return DataFrame with columns: index, accepted, red_flags_pred, green_flags_pred, error.
 
@@ -223,6 +233,7 @@ def load_predictions(path):
         df = pd.read_csv(os.path.join(BASE, path), engine="python", on_bad_lines="skip")
     df["red_flags_pred"] = df["red_flags"].apply(to_list_safe).apply(strip_empty_placeholders)
     df["green_flags_pred"] = df["green_flags"].apply(to_list_safe).apply(strip_empty_placeholders)
+    df["accepted"] = df["accepted"].map(normalize_accepted)
     df["index"] = pd.to_numeric(df["index"], errors="coerce").astype("Int64")
     df = df[df["index"].notna()].copy()
     df["index"] = df["index"].astype(int)

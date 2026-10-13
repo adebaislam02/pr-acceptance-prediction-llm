@@ -64,7 +64,9 @@ def load_predictions(fname):
     # `accepted` field failed to parse into a clean yes/no (a few DeepSeek
     # one-shot rows have NaN here). Without this, N in this analysis
     # disagrees with N in Table 5.1 for the same (model, condition) cells.
-    df["accepted_clean"] = df["accepted"].astype(str).str.strip().str.lower()
+    # Read true/false as yes/no (one Mistral zero-shot answer is True).
+    df["accepted_clean"] = (df["accepted"].astype(str).str.strip().str.lower()
+                            .replace({"true": "yes", "false": "no"}))
     df = df[df["accepted_clean"].isin(["yes", "no"])].copy()
     df["pred_yes"] = df["accepted_clean"].eq("yes")
     return df[["index", "pred_yes"]]
