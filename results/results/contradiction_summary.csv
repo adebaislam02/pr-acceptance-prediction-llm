@@ -1,0 +1,34 @@
+model,condition,mode,N,prs_any_strict_pair,prs_threshold_pairs,prs_tests_pair,pct_any_strict_pair
+Gold,-,-,300,0,0,3,0.0
+GPT-4o-mini,zero-shot,strict,300,25,8,2,8.3
+GPT-4o-mini,zero-shot,normalized,300,25,8,2,8.3
+GPT-4o-mini,one-shot-merged,strict,299,18,11,0,6.0
+GPT-4o-mini,one-shot-merged,normalized,299,20,12,0,6.7
+GPT-4o-mini,one-shot-unmerged,strict,299,39,31,1,13.0
+GPT-4o-mini,one-shot-unmerged,normalized,299,51,42,3,17.1
+GPT-4o-mini,few-shot,strict,297,0,0,0,0.0
+GPT-4o-mini,few-shot,normalized,297,19,8,5,6.4
+Claude Haiku 4.5,zero-shot,strict,300,8,0,0,2.7
+Claude Haiku 4.5,zero-shot,normalized,300,8,0,0,2.7
+Claude Haiku 4.5,one-shot-merged,strict,299,12,6,0,4.0
+Claude Haiku 4.5,one-shot-merged,normalized,299,12,6,0,4.0
+Claude Haiku 4.5,one-shot-unmerged,strict,299,12,1,0,4.0
+Claude Haiku 4.5,one-shot-unmerged,normalized,299,12,1,0,4.0
+Claude Haiku 4.5,few-shot,strict,297,10,3,0,3.4
+Claude Haiku 4.5,few-shot,normalized,297,10,3,0,3.4
+DeepSeek R1,zero-shot,strict,300,7,0,5,2.3
+DeepSeek R1,zero-shot,normalized,300,7,0,5,2.3
+DeepSeek R1,one-shot-merged,strict,297,7,5,2,2.4
+DeepSeek R1,one-shot-merged,normalized,297,7,5,2,2.4
+DeepSeek R1,one-shot-unmerged,strict,298,5,0,4,1.7
+DeepSeek R1,one-shot-unmerged,normalized,298,5,0,4,1.7
+DeepSeek R1,few-shot,strict,297,7,6,7,2.4
+DeepSeek R1,few-shot,normalized,297,7,6,7,2.4
+Mistral 3.2-24B,zero-shot,strict,300,17,3,1,5.7
+Mistral 3.2-24B,zero-shot,normalized,300,17,3,1,5.7
+Mistral 3.2-24B,one-shot-merged,strict,299,12,8,0,4.0
+Mistral 3.2-24B,one-shot-merged,normalized,299,18,13,1,6.0
+Mistral 3.2-24B,one-shot-unmerged,strict,299,21,5,0,7.0
+Mistral 3.2-24B,one-shot-unmerged,normalized,299,35,14,0,11.7
+Mistral 3.2-24B,few-shot,strict,297,0,0,0,0.0
+Mistral 3.2-24B,few-shot,normalized,297,24,13,1,8.1

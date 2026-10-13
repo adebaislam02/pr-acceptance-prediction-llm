@@ -1,0 +1,331 @@
+model,condition,mode,pair_green_member,n_prs
+Gold,-,-,clear_alignment_with_issue,0
+Gold,-,-,includes_test_cases,3
+Gold,-,-,high_contributor_acceptance_rate,0
+Gold,-,-,positive_sentiment_in_comments,0
+Gold,-,-,manageable_number_of_changed_lines,0
+Gold,-,-,clear_pr_title,0
+Gold,-,-,clear_pr_description,0
+Gold,-,-,clear_commit_message,0
+Gold,-,-,good_code_quality,0
+Gold,-,-,responsive_to_feedback,0
+GPT-4o-mini,zero-shot,strict,clear_alignment_with_issue,16
+GPT-4o-mini,zero-shot,strict,includes_test_cases,2
+GPT-4o-mini,zero-shot,strict,high_contributor_acceptance_rate,0
+GPT-4o-mini,zero-shot,strict,positive_sentiment_in_comments,1
+GPT-4o-mini,zero-shot,strict,manageable_number_of_changed_lines,8
+GPT-4o-mini,zero-shot,strict,clear_pr_title,2
+GPT-4o-mini,zero-shot,strict,clear_pr_description,0
+GPT-4o-mini,zero-shot,strict,clear_commit_message,1
+GPT-4o-mini,zero-shot,strict,good_code_quality,0
+GPT-4o-mini,zero-shot,strict,responsive_to_feedback,0
+GPT-4o-mini,zero-shot,normalized,clear_alignment_with_issue,16
+GPT-4o-mini,zero-shot,normalized,includes_test_cases,2
+GPT-4o-mini,zero-shot,normalized,high_contributor_acceptance_rate,0
+GPT-4o-mini,zero-shot,normalized,positive_sentiment_in_comments,1
+GPT-4o-mini,zero-shot,normalized,manageable_number_of_changed_lines,8
+GPT-4o-mini,zero-shot,normalized,clear_pr_title,2
+GPT-4o-mini,zero-shot,normalized,clear_pr_description,0
+GPT-4o-mini,zero-shot,normalized,clear_commit_message,1
+GPT-4o-mini,zero-shot,normalized,good_code_quality,0
+GPT-4o-mini,zero-shot,normalized,responsive_to_feedback,0
+GPT-4o-mini,one-shot-merged,strict,clear_alignment_with_issue,5
+GPT-4o-mini,one-shot-merged,strict,includes_test_cases,0
+GPT-4o-mini,one-shot-merged,strict,high_contributor_acceptance_rate,1
+GPT-4o-mini,one-shot-merged,strict,positive_sentiment_in_comments,2
+GPT-4o-mini,one-shot-merged,strict,manageable_number_of_changed_lines,10
+GPT-4o-mini,one-shot-merged,strict,clear_pr_title,0
+GPT-4o-mini,one-shot-merged,strict,clear_pr_description,0
+GPT-4o-mini,one-shot-merged,strict,clear_commit_message,0
+GPT-4o-mini,one-shot-merged,strict,good_code_quality,0
+GPT-4o-mini,one-shot-merged,strict,responsive_to_feedback,0
+GPT-4o-mini,one-shot-merged,normalized,clear_alignment_with_issue,5
+GPT-4o-mini,one-shot-merged,normalized,includes_test_cases,0
+GPT-4o-mini,one-shot-merged,normalized,high_contributor_acceptance_rate,1
+GPT-4o-mini,one-shot-merged,normalized,positive_sentiment_in_comments,2
+GPT-4o-mini,one-shot-merged,normalized,manageable_number_of_changed_lines,11
+GPT-4o-mini,one-shot-merged,normalized,clear_pr_title,1
+GPT-4o-mini,one-shot-merged,normalized,clear_pr_description,0
+GPT-4o-mini,one-shot-merged,normalized,clear_commit_message,0
+GPT-4o-mini,one-shot-merged,normalized,good_code_quality,0
+GPT-4o-mini,one-shot-merged,normalized,responsive_to_feedback,0
+GPT-4o-mini,one-shot-unmerged,strict,clear_alignment_with_issue,8
+GPT-4o-mini,one-shot-unmerged,strict,includes_test_cases,1
+GPT-4o-mini,one-shot-unmerged,strict,high_contributor_acceptance_rate,1
+GPT-4o-mini,one-shot-unmerged,strict,positive_sentiment_in_comments,6
+GPT-4o-mini,one-shot-unmerged,strict,manageable_number_of_changed_lines,30
+GPT-4o-mini,one-shot-unmerged,strict,clear_pr_title,0
+GPT-4o-mini,one-shot-unmerged,strict,clear_pr_description,0
+GPT-4o-mini,one-shot-unmerged,strict,clear_commit_message,1
+GPT-4o-mini,one-shot-unmerged,strict,good_code_quality,0
+GPT-4o-mini,one-shot-unmerged,strict,responsive_to_feedback,1
+GPT-4o-mini,one-shot-unmerged,normalized,clear_alignment_with_issue,8
+GPT-4o-mini,one-shot-unmerged,normalized,includes_test_cases,3
+GPT-4o-mini,one-shot-unmerged,normalized,high_contributor_acceptance_rate,1
+GPT-4o-mini,one-shot-unmerged,normalized,positive_sentiment_in_comments,7
+GPT-4o-mini,one-shot-unmerged,normalized,manageable_number_of_changed_lines,41
+GPT-4o-mini,one-shot-unmerged,normalized,clear_pr_title,0
+GPT-4o-mini,one-shot-unmerged,normalized,clear_pr_description,0
+GPT-4o-mini,one-shot-unmerged,normalized,clear_commit_message,2
+GPT-4o-mini,one-shot-unmerged,normalized,good_code_quality,0
+GPT-4o-mini,one-shot-unmerged,normalized,responsive_to_feedback,1
+GPT-4o-mini,few-shot,strict,clear_alignment_with_issue,0
+GPT-4o-mini,few-shot,strict,includes_test_cases,0
+GPT-4o-mini,few-shot,strict,high_contributor_acceptance_rate,0
+GPT-4o-mini,few-shot,strict,positive_sentiment_in_comments,0
+GPT-4o-mini,few-shot,strict,manageable_number_of_changed_lines,0
+GPT-4o-mini,few-shot,strict,clear_pr_title,0
+GPT-4o-mini,few-shot,strict,clear_pr_description,0
+GPT-4o-mini,few-shot,strict,clear_commit_message,0
+GPT-4o-mini,few-shot,strict,good_code_quality,0
+GPT-4o-mini,few-shot,strict,responsive_to_feedback,0
+GPT-4o-mini,few-shot,normalized,clear_alignment_with_issue,4
+GPT-4o-mini,few-shot,normalized,includes_test_cases,5
+GPT-4o-mini,few-shot,normalized,high_contributor_acceptance_rate,0
+GPT-4o-mini,few-shot,normalized,positive_sentiment_in_comments,3
+GPT-4o-mini,few-shot,normalized,manageable_number_of_changed_lines,8
+GPT-4o-mini,few-shot,normalized,clear_pr_title,0
+GPT-4o-mini,few-shot,normalized,clear_pr_description,0
+GPT-4o-mini,few-shot,normalized,clear_commit_message,4
+GPT-4o-mini,few-shot,normalized,good_code_quality,0
+GPT-4o-mini,few-shot,normalized,responsive_to_feedback,1
+Claude Haiku 4.5,zero-shot,strict,clear_alignment_with_issue,8
+Claude Haiku 4.5,zero-shot,strict,includes_test_cases,0
+Claude Haiku 4.5,zero-shot,strict,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,zero-shot,strict,positive_sentiment_in_comments,0
+Claude Haiku 4.5,zero-shot,strict,manageable_number_of_changed_lines,0
+Claude Haiku 4.5,zero-shot,strict,clear_pr_title,0
+Claude Haiku 4.5,zero-shot,strict,clear_pr_description,0
+Claude Haiku 4.5,zero-shot,strict,clear_commit_message,0
+Claude Haiku 4.5,zero-shot,strict,good_code_quality,0
+Claude Haiku 4.5,zero-shot,strict,responsive_to_feedback,0
+Claude Haiku 4.5,zero-shot,normalized,clear_alignment_with_issue,8
+Claude Haiku 4.5,zero-shot,normalized,includes_test_cases,0
+Claude Haiku 4.5,zero-shot,normalized,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,zero-shot,normalized,positive_sentiment_in_comments,0
+Claude Haiku 4.5,zero-shot,normalized,manageable_number_of_changed_lines,0
+Claude Haiku 4.5,zero-shot,normalized,clear_pr_title,0
+Claude Haiku 4.5,zero-shot,normalized,clear_pr_description,0
+Claude Haiku 4.5,zero-shot,normalized,clear_commit_message,0
+Claude Haiku 4.5,zero-shot,normalized,good_code_quality,0
+Claude Haiku 4.5,zero-shot,normalized,responsive_to_feedback,0
+Claude Haiku 4.5,one-shot-merged,strict,clear_alignment_with_issue,4
+Claude Haiku 4.5,one-shot-merged,strict,includes_test_cases,0
+Claude Haiku 4.5,one-shot-merged,strict,high_contributor_acceptance_rate,1
+Claude Haiku 4.5,one-shot-merged,strict,positive_sentiment_in_comments,0
+Claude Haiku 4.5,one-shot-merged,strict,manageable_number_of_changed_lines,5
+Claude Haiku 4.5,one-shot-merged,strict,clear_pr_title,0
+Claude Haiku 4.5,one-shot-merged,strict,clear_pr_description,0
+Claude Haiku 4.5,one-shot-merged,strict,clear_commit_message,0
+Claude Haiku 4.5,one-shot-merged,strict,good_code_quality,0
+Claude Haiku 4.5,one-shot-merged,strict,responsive_to_feedback,2
+Claude Haiku 4.5,one-shot-merged,normalized,clear_alignment_with_issue,4
+Claude Haiku 4.5,one-shot-merged,normalized,includes_test_cases,0
+Claude Haiku 4.5,one-shot-merged,normalized,high_contributor_acceptance_rate,1
+Claude Haiku 4.5,one-shot-merged,normalized,positive_sentiment_in_comments,0
+Claude Haiku 4.5,one-shot-merged,normalized,manageable_number_of_changed_lines,5
+Claude Haiku 4.5,one-shot-merged,normalized,clear_pr_title,0
+Claude Haiku 4.5,one-shot-merged,normalized,clear_pr_description,0
+Claude Haiku 4.5,one-shot-merged,normalized,clear_commit_message,0
+Claude Haiku 4.5,one-shot-merged,normalized,good_code_quality,0
+Claude Haiku 4.5,one-shot-merged,normalized,responsive_to_feedback,2
+Claude Haiku 4.5,one-shot-unmerged,strict,clear_alignment_with_issue,9
+Claude Haiku 4.5,one-shot-unmerged,strict,includes_test_cases,0
+Claude Haiku 4.5,one-shot-unmerged,strict,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,one-shot-unmerged,strict,positive_sentiment_in_comments,0
+Claude Haiku 4.5,one-shot-unmerged,strict,manageable_number_of_changed_lines,1
+Claude Haiku 4.5,one-shot-unmerged,strict,clear_pr_title,0
+Claude Haiku 4.5,one-shot-unmerged,strict,clear_pr_description,0
+Claude Haiku 4.5,one-shot-unmerged,strict,clear_commit_message,0
+Claude Haiku 4.5,one-shot-unmerged,strict,good_code_quality,0
+Claude Haiku 4.5,one-shot-unmerged,strict,responsive_to_feedback,2
+Claude Haiku 4.5,one-shot-unmerged,normalized,clear_alignment_with_issue,9
+Claude Haiku 4.5,one-shot-unmerged,normalized,includes_test_cases,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,positive_sentiment_in_comments,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,manageable_number_of_changed_lines,1
+Claude Haiku 4.5,one-shot-unmerged,normalized,clear_pr_title,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,clear_pr_description,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,clear_commit_message,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,good_code_quality,0
+Claude Haiku 4.5,one-shot-unmerged,normalized,responsive_to_feedback,2
+Claude Haiku 4.5,few-shot,strict,clear_alignment_with_issue,3
+Claude Haiku 4.5,few-shot,strict,includes_test_cases,0
+Claude Haiku 4.5,few-shot,strict,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,few-shot,strict,positive_sentiment_in_comments,0
+Claude Haiku 4.5,few-shot,strict,manageable_number_of_changed_lines,3
+Claude Haiku 4.5,few-shot,strict,clear_pr_title,0
+Claude Haiku 4.5,few-shot,strict,clear_pr_description,0
+Claude Haiku 4.5,few-shot,strict,clear_commit_message,0
+Claude Haiku 4.5,few-shot,strict,good_code_quality,0
+Claude Haiku 4.5,few-shot,strict,responsive_to_feedback,4
+Claude Haiku 4.5,few-shot,normalized,clear_alignment_with_issue,3
+Claude Haiku 4.5,few-shot,normalized,includes_test_cases,0
+Claude Haiku 4.5,few-shot,normalized,high_contributor_acceptance_rate,0
+Claude Haiku 4.5,few-shot,normalized,positive_sentiment_in_comments,0
+Claude Haiku 4.5,few-shot,normalized,manageable_number_of_changed_lines,3
+Claude Haiku 4.5,few-shot,normalized,clear_pr_title,0
+Claude Haiku 4.5,few-shot,normalized,clear_pr_description,0
+Claude Haiku 4.5,few-shot,normalized,clear_commit_message,0
+Claude Haiku 4.5,few-shot,normalized,good_code_quality,0
+Claude Haiku 4.5,few-shot,normalized,responsive_to_feedback,4
+DeepSeek R1,zero-shot,strict,clear_alignment_with_issue,5
+DeepSeek R1,zero-shot,strict,includes_test_cases,5
+DeepSeek R1,zero-shot,strict,high_contributor_acceptance_rate,0
+DeepSeek R1,zero-shot,strict,positive_sentiment_in_comments,1
+DeepSeek R1,zero-shot,strict,manageable_number_of_changed_lines,0
+DeepSeek R1,zero-shot,strict,clear_pr_title,0
+DeepSeek R1,zero-shot,strict,clear_pr_description,0
+DeepSeek R1,zero-shot,strict,clear_commit_message,0
+DeepSeek R1,zero-shot,strict,good_code_quality,1
+DeepSeek R1,zero-shot,strict,responsive_to_feedback,0
+DeepSeek R1,zero-shot,normalized,clear_alignment_with_issue,5
+DeepSeek R1,zero-shot,normalized,includes_test_cases,5
+DeepSeek R1,zero-shot,normalized,high_contributor_acceptance_rate,0
+DeepSeek R1,zero-shot,normalized,positive_sentiment_in_comments,1
+DeepSeek R1,zero-shot,normalized,manageable_number_of_changed_lines,0
+DeepSeek R1,zero-shot,normalized,clear_pr_title,0
+DeepSeek R1,zero-shot,normalized,clear_pr_description,0
+DeepSeek R1,zero-shot,normalized,clear_commit_message,0
+DeepSeek R1,zero-shot,normalized,good_code_quality,1
+DeepSeek R1,zero-shot,normalized,responsive_to_feedback,0
+DeepSeek R1,one-shot-merged,strict,clear_alignment_with_issue,1
+DeepSeek R1,one-shot-merged,strict,includes_test_cases,2
+DeepSeek R1,one-shot-merged,strict,high_contributor_acceptance_rate,0
+DeepSeek R1,one-shot-merged,strict,positive_sentiment_in_comments,0
+DeepSeek R1,one-shot-merged,strict,manageable_number_of_changed_lines,5
+DeepSeek R1,one-shot-merged,strict,clear_pr_title,1
+DeepSeek R1,one-shot-merged,strict,clear_pr_description,0
+DeepSeek R1,one-shot-merged,strict,clear_commit_message,2
+DeepSeek R1,one-shot-merged,strict,good_code_quality,0
+DeepSeek R1,one-shot-merged,strict,responsive_to_feedback,0
+DeepSeek R1,one-shot-merged,normalized,clear_alignment_with_issue,1
+DeepSeek R1,one-shot-merged,normalized,includes_test_cases,2
+DeepSeek R1,one-shot-merged,normalized,high_contributor_acceptance_rate,0
+DeepSeek R1,one-shot-merged,normalized,positive_sentiment_in_comments,0
+DeepSeek R1,one-shot-merged,normalized,manageable_number_of_changed_lines,5
+DeepSeek R1,one-shot-merged,normalized,clear_pr_title,1
+DeepSeek R1,one-shot-merged,normalized,clear_pr_description,0
+DeepSeek R1,one-shot-merged,normalized,clear_commit_message,2
+DeepSeek R1,one-shot-merged,normalized,good_code_quality,0
+DeepSeek R1,one-shot-merged,normalized,responsive_to_feedback,0
+DeepSeek R1,one-shot-unmerged,strict,clear_alignment_with_issue,4
+DeepSeek R1,one-shot-unmerged,strict,includes_test_cases,4
+DeepSeek R1,one-shot-unmerged,strict,high_contributor_acceptance_rate,0
+DeepSeek R1,one-shot-unmerged,strict,positive_sentiment_in_comments,0
+DeepSeek R1,one-shot-unmerged,strict,manageable_number_of_changed_lines,0
+DeepSeek R1,one-shot-unmerged,strict,clear_pr_title,0
+DeepSeek R1,one-shot-unmerged,strict,clear_pr_description,0
+DeepSeek R1,one-shot-unmerged,strict,clear_commit_message,0
+DeepSeek R1,one-shot-unmerged,strict,good_code_quality,0
+DeepSeek R1,one-shot-unmerged,strict,responsive_to_feedback,1
+DeepSeek R1,one-shot-unmerged,normalized,clear_alignment_with_issue,4
+DeepSeek R1,one-shot-unmerged,normalized,includes_test_cases,4
+DeepSeek R1,one-shot-unmerged,normalized,high_contributor_acceptance_rate,0
+DeepSeek R1,one-shot-unmerged,normalized,positive_sentiment_in_comments,0
+DeepSeek R1,one-shot-unmerged,normalized,manageable_number_of_changed_lines,0
+DeepSeek R1,one-shot-unmerged,normalized,clear_pr_title,0
+DeepSeek R1,one-shot-unmerged,normalized,clear_pr_description,0
+DeepSeek R1,one-shot-unmerged,normalized,clear_commit_message,0
+DeepSeek R1,one-shot-unmerged,normalized,good_code_quality,0
+DeepSeek R1,one-shot-unmerged,normalized,responsive_to_feedback,1
+DeepSeek R1,few-shot,strict,clear_alignment_with_issue,1
+DeepSeek R1,few-shot,strict,includes_test_cases,7
+DeepSeek R1,few-shot,strict,high_contributor_acceptance_rate,0
+DeepSeek R1,few-shot,strict,positive_sentiment_in_comments,0
+DeepSeek R1,few-shot,strict,manageable_number_of_changed_lines,6
+DeepSeek R1,few-shot,strict,clear_pr_title,0
+DeepSeek R1,few-shot,strict,clear_pr_description,0
+DeepSeek R1,few-shot,strict,clear_commit_message,0
+DeepSeek R1,few-shot,strict,good_code_quality,0
+DeepSeek R1,few-shot,strict,responsive_to_feedback,0
+DeepSeek R1,few-shot,normalized,clear_alignment_with_issue,1
+DeepSeek R1,few-shot,normalized,includes_test_cases,7
+DeepSeek R1,few-shot,normalized,high_contributor_acceptance_rate,0
+DeepSeek R1,few-shot,normalized,positive_sentiment_in_comments,0
+DeepSeek R1,few-shot,normalized,manageable_number_of_changed_lines,6
+DeepSeek R1,few-shot,normalized,clear_pr_title,0
+DeepSeek R1,few-shot,normalized,clear_pr_description,0
+DeepSeek R1,few-shot,normalized,clear_commit_message,0
+DeepSeek R1,few-shot,normalized,good_code_quality,0
+DeepSeek R1,few-shot,normalized,responsive_to_feedback,0
+Mistral 3.2-24B,zero-shot,strict,clear_alignment_with_issue,8
+Mistral 3.2-24B,zero-shot,strict,includes_test_cases,1
+Mistral 3.2-24B,zero-shot,strict,high_contributor_acceptance_rate,2
+Mistral 3.2-24B,zero-shot,strict,positive_sentiment_in_comments,2
+Mistral 3.2-24B,zero-shot,strict,manageable_number_of_changed_lines,1
+Mistral 3.2-24B,zero-shot,strict,clear_pr_title,1
+Mistral 3.2-24B,zero-shot,strict,clear_pr_description,1
+Mistral 3.2-24B,zero-shot,strict,clear_commit_message,1
+Mistral 3.2-24B,zero-shot,strict,good_code_quality,2
+Mistral 3.2-24B,zero-shot,strict,responsive_to_feedback,3
+Mistral 3.2-24B,zero-shot,normalized,clear_alignment_with_issue,8
+Mistral 3.2-24B,zero-shot,normalized,includes_test_cases,1
+Mistral 3.2-24B,zero-shot,normalized,high_contributor_acceptance_rate,2
+Mistral 3.2-24B,zero-shot,normalized,positive_sentiment_in_comments,2
+Mistral 3.2-24B,zero-shot,normalized,manageable_number_of_changed_lines,1
+Mistral 3.2-24B,zero-shot,normalized,clear_pr_title,1
+Mistral 3.2-24B,zero-shot,normalized,clear_pr_description,1
+Mistral 3.2-24B,zero-shot,normalized,clear_commit_message,1
+Mistral 3.2-24B,zero-shot,normalized,good_code_quality,2
+Mistral 3.2-24B,zero-shot,normalized,responsive_to_feedback,3
+Mistral 3.2-24B,one-shot-merged,strict,clear_alignment_with_issue,3
+Mistral 3.2-24B,one-shot-merged,strict,includes_test_cases,0
+Mistral 3.2-24B,one-shot-merged,strict,high_contributor_acceptance_rate,3
+Mistral 3.2-24B,one-shot-merged,strict,positive_sentiment_in_comments,0
+Mistral 3.2-24B,one-shot-merged,strict,manageable_number_of_changed_lines,5
+Mistral 3.2-24B,one-shot-merged,strict,clear_pr_title,0
+Mistral 3.2-24B,one-shot-merged,strict,clear_pr_description,0
+Mistral 3.2-24B,one-shot-merged,strict,clear_commit_message,0
+Mistral 3.2-24B,one-shot-merged,strict,good_code_quality,1
+Mistral 3.2-24B,one-shot-merged,strict,responsive_to_feedback,0
+Mistral 3.2-24B,one-shot-merged,normalized,clear_alignment_with_issue,3
+Mistral 3.2-24B,one-shot-merged,normalized,includes_test_cases,1
+Mistral 3.2-24B,one-shot-merged,normalized,high_contributor_acceptance_rate,3
+Mistral 3.2-24B,one-shot-merged,normalized,positive_sentiment_in_comments,0
+Mistral 3.2-24B,one-shot-merged,normalized,manageable_number_of_changed_lines,10
+Mistral 3.2-24B,one-shot-merged,normalized,clear_pr_title,0
+Mistral 3.2-24B,one-shot-merged,normalized,clear_pr_description,0
+Mistral 3.2-24B,one-shot-merged,normalized,clear_commit_message,0
+Mistral 3.2-24B,one-shot-merged,normalized,good_code_quality,2
+Mistral 3.2-24B,one-shot-merged,normalized,responsive_to_feedback,0
+Mistral 3.2-24B,one-shot-unmerged,strict,clear_alignment_with_issue,12
+Mistral 3.2-24B,one-shot-unmerged,strict,includes_test_cases,0
+Mistral 3.2-24B,one-shot-unmerged,strict,high_contributor_acceptance_rate,2
+Mistral 3.2-24B,one-shot-unmerged,strict,positive_sentiment_in_comments,1
+Mistral 3.2-24B,one-shot-unmerged,strict,manageable_number_of_changed_lines,4
+Mistral 3.2-24B,one-shot-unmerged,strict,clear_pr_title,0
+Mistral 3.2-24B,one-shot-unmerged,strict,clear_pr_description,0
+Mistral 3.2-24B,one-shot-unmerged,strict,clear_commit_message,0
+Mistral 3.2-24B,one-shot-unmerged,strict,good_code_quality,2
+Mistral 3.2-24B,one-shot-unmerged,strict,responsive_to_feedback,3
+Mistral 3.2-24B,one-shot-unmerged,normalized,clear_alignment_with_issue,14
+Mistral 3.2-24B,one-shot-unmerged,normalized,includes_test_cases,0
+Mistral 3.2-24B,one-shot-unmerged,normalized,high_contributor_acceptance_rate,3
+Mistral 3.2-24B,one-shot-unmerged,normalized,positive_sentiment_in_comments,2
+Mistral 3.2-24B,one-shot-unmerged,normalized,manageable_number_of_changed_lines,12
+Mistral 3.2-24B,one-shot-unmerged,normalized,clear_pr_title,0
+Mistral 3.2-24B,one-shot-unmerged,normalized,clear_pr_description,0
+Mistral 3.2-24B,one-shot-unmerged,normalized,clear_commit_message,2
+Mistral 3.2-24B,one-shot-unmerged,normalized,good_code_quality,3
+Mistral 3.2-24B,one-shot-unmerged,normalized,responsive_to_feedback,6
+Mistral 3.2-24B,few-shot,strict,clear_alignment_with_issue,0
+Mistral 3.2-24B,few-shot,strict,includes_test_cases,0
+Mistral 3.2-24B,few-shot,strict,high_contributor_acceptance_rate,0
+Mistral 3.2-24B,few-shot,strict,positive_sentiment_in_comments,0
+Mistral 3.2-24B,few-shot,strict,manageable_number_of_changed_lines,0
+Mistral 3.2-24B,few-shot,strict,clear_pr_title,0
+Mistral 3.2-24B,few-shot,strict,clear_pr_description,0
+Mistral 3.2-24B,few-shot,strict,clear_commit_message,0
+Mistral 3.2-24B,few-shot,strict,good_code_quality,0
+Mistral 3.2-24B,few-shot,strict,responsive_to_feedback,0
+Mistral 3.2-24B,few-shot,normalized,clear_alignment_with_issue,4
+Mistral 3.2-24B,few-shot,normalized,includes_test_cases,1
+Mistral 3.2-24B,few-shot,normalized,high_contributor_acceptance_rate,6
+Mistral 3.2-24B,few-shot,normalized,positive_sentiment_in_comments,0
+Mistral 3.2-24B,few-shot,normalized,manageable_number_of_changed_lines,8
+Mistral 3.2-24B,few-shot,normalized,clear_pr_title,1
+Mistral 3.2-24B,few-shot,normalized,clear_pr_description,2
+Mistral 3.2-24B,few-shot,normalized,clear_commit_message,5
+Mistral 3.2-24B,few-shot,normalized,good_code_quality,1
+Mistral 3.2-24B,few-shot,normalized,responsive_to_feedback,1

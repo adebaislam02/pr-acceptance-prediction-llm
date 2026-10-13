@@ -1,0 +1,11 @@
+Model / Cutoff,Cutoff,Split by,Before (poss. memorized),After  (unseen),Total,% Before,% After,Statsig?
+GPT-4o-mini,"Oct 01, 2023",created_at,243,56,299,81.3%,18.7%,OK
+GPT-4o-mini,"Oct 01, 2023",closed_at,240,59,299,80.3%,19.7%,OK
+Mistral Small 3.2-24B Instruct,"Oct 01, 2023",created_at,243,56,299,81.3%,18.7%,OK
+Mistral Small 3.2-24B Instruct,"Oct 01, 2023",closed_at,240,59,299,80.3%,19.7%,OK
+Claude Haiku 4.5 (reliable),Feb 2025,created_at,292,7,299,97.7%,2.3%,TOO FEW (<15)
+Claude Haiku 4.5 (reliable),Feb 2025,closed_at,289,10,299,96.7%,3.3%,TOO FEW (<15)
+Claude Haiku 4.5 (training),Jul 2025,created_at,299,0,299,100.0%,0.0%,TOO FEW (<15)
+Claude Haiku 4.5 (training),Jul 2025,closed_at,299,0,299,100.0%,0.0%,TOO FEW (<15)
+DeepSeek R1 (best estimate),Jul 2024,created_at,274,25,299,91.6%,8.4%,OK
+DeepSeek R1 (best estimate),Jul 2024,closed_at,271,28,299,90.6%,9.4%,OK
