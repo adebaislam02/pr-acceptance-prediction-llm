@@ -121,9 +121,7 @@ python3 contamination_analysis.py
   though aggregate metrics are stable to a few percentage points.
 - `predictions/` contains the exact CSVs used to produce every number
   in the paper.
-- All ground truth labels come from `FINAL_DATASET_FIXED.csv`; the
-  earlier draft dataset (with the `breaks_compatibility` merged-label
-  taxonomy issue) is **not** included in this artifact.
+- All ground truth labels come from `FINAL_DATASET_FIXED.csv`.
 
 ## Citation
 
