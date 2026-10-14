@@ -1,7 +1,7 @@
-# Interpretable Pull Request Acceptance Prediction
+# LLMs for Pull Request Acceptance Prediction and Flag Identification
 
-Replication artifact for the paper *"Interpretable Pull Request
-Acceptance Prediction: A Multi-Label Dataset and LLM-Based Evaluation"*
+Replication artifact for the paper *"LLMs for Pull Request Acceptance
+Prediction and Flag Identification: An Annotated Dataset and Evaluation"*
 submitted to *e-Informatica Software Engineering Journal*.
 
 ## Contents
@@ -22,12 +22,12 @@ submitted to *e-Informatica Software Engineering Journal*.
 ├── build_latex_tables.py                  # (Optional) Renders paper LaTeX tables from results/
 ├── compute_mcnemar_table.py               # Pairwise McNemar's test on acceptance classification
 ├── compute_perflag_kappa.py               # Per-flag Cohen's Kappa (annotation reliability)
-├── error_analysis.py                      # Per-flag false positive / false negative analysis (Appendix D)
+├── error_analysis.py                      # Per-flag false positive / false negative analysis
 ├── contradiction_analysis.py              # Contradictory opposite-flag pairs in model output vs. gold
 ├── compute_flag_correlations.py           # Flag co-occurrence correlations and per-flag baselines
 ├── fetch_pr_dates.py                      # Pulls created/closed/merged dates from GitHub API
 ├── summarize_pr_dates_vs_cutoffs.py       # Reports PR counts vs each model's training cutoff
-├── contamination_analysis.py              # Data-contamination check (Section 5.5 of paper)
+├── contamination_analysis.py              # Data-contamination check (Section 4.6 of paper)
 │
 ├── predictions/                           # 16 raw prediction CSVs (one per model × condition)
 └── results/                               # result CSVs used to render paper tables
@@ -67,10 +67,10 @@ from the original runs, you can reproduce every table in the paper
 
 ```bash
 # Recompute all main-text and appendix tables in results/
-python3 eval_all_models.py            # Sections 5.1, 5.2, 5.3, 5.4 numbers
-python3 compute_mcnemar_table.py      # Section 5.1 McNemar (Table 6)
-python3 compute_perflag_kappa.py      # Section 4 Kappa (Table 4)
-python3 contamination_analysis.py     # Section 5.5 contamination check
+python3 eval_all_models.py            # Sections 4.1-4.4 numbers
+python3 compute_mcnemar_table.py      # Section 4.1 McNemar (Table 7)
+python3 compute_perflag_kappa.py      # Section 3.2 Kappa (Table 5)
+python3 contamination_analysis.py     # Section 4.6 contamination check
 python3 summarize_pr_dates_vs_cutoffs.py    # supporting counts
 
 # (Optional) Render paper-ready LaTeX table snippets into latex/
