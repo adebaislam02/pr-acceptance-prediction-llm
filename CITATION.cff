@@ -29,9 +29,7 @@ authors:
     orcid: "https://orcid.org/0000-0001-9529-5208"
     affiliation: "Department of Computer Science and Engineering, Islamic University of Technology, Bangladesh"
 repository-code: "https://github.com/adebaislam02/pr-acceptance-prediction-llm"
-license:
-  - MIT
-  - CC-BY-4.0
+license: CC-BY-4.0
 version: "1.0.0"
 date-released: "2026-10-15"
 keywords:
